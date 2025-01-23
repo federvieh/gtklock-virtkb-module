@@ -51,7 +51,7 @@ static void key_pressed(GtkWidget *button, gpointer user_data) {
       if (key_data->layout) {
         create_keys(user_data, key_data->layout);
       } else {
-        create_keys(user_data, &layouts[Full]);
+        create_keys(user_data, &layouts[Dialer]);
       }
     } else {
       if (key_data->code == KEY_BACKSPACE) {
@@ -102,9 +102,9 @@ static void key_pressed(GtkWidget *button, gpointer user_data) {
       }
     }
   } else if (key_data->type == BackLayer) {
-    create_keys(user_data, &layouts[Full]);
+    create_keys(user_data, &layouts[Dialer]);
   } else if (key_data->type == NextLayer) {
-    create_keys(user_data, &layouts[Special]);
+    create_keys(user_data, &layouts[Full]);
   } else if (key_data->type == Layout) {
     create_keys(user_data, key_data->layout);
   } else if (key_data->type == Compose) {
@@ -196,7 +196,7 @@ static void setup_virtual_keyboard(struct Window *ctx) {
   gtk_grid_set_column_spacing(GTK_GRID(VIRTUAL_KEYBOARD(ctx)->keyboard_grid),
                               5);
 
-  create_keys(ctx, &layouts[Full]);
+  create_keys(ctx, &layouts[Dialer]);
 
   gtk_container_add(GTK_CONTAINER(VIRTUAL_KEYBOARD(ctx)->revealer),
                     VIRTUAL_KEYBOARD(ctx)->keyboard_grid);
